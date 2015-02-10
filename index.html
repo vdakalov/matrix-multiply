@@ -3,7 +3,11 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Matrix multiply</title>
+
     <link rel="stylesheet" href="styles/common.css"/>
+    <link rel="stylesheet" href="styles/button.css"/>
+    <link rel="stylesheet" href="styles/input.css"/>
+    <link rel="stylesheet" href="styles/radio.css"/>
 </head>
 <body>
 
@@ -12,6 +16,31 @@
         <button class="btn disabled">Disabled</button>
     </p>
 
+    <p style="padding:30px">
+        <input type="text" value="Значение" />
+        <input type="text" disabled="disabled" value="Значение"/>
+    </p>
+
+    <p style="padding:30px">
+        <div class="radio" tabindex="1">
+            <!--
+            заданием не предусматривается отправка данных на сервер, по этому
+            я сознательно не использую здесь элемент input:radio
+            -->
+            <span></span>
+            Первый вариант
+        </div>
+
+        <div class="radio checked" tabindex="1">
+            <span></span>
+            Второй вариант
+        </div>
+
+        <div class="radio disabled" tabindex="1">
+            <span></span>
+            Первый вариант
+        </div>
+    </p>
 
     <script src="scripts/utils.js"></script>
     <script src="scripts/common.js"></script>

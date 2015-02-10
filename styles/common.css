@@ -1,50 +1,15 @@
 @font-face {
-    font-family: Kontur-iconic;
-    src: url("/fonts/contur-iconic.ttf");
+  font-family: Kontur-iconic;
+  src: url("/fonts/contur-iconic.ttf");
 }
 
 html, body {
-    width: 100%;
-    height: 100%;
-    margin: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 
-    font-family: Kontur-iconic, sans-serif;
-    font-size: 14px;
-    color: #404040;
+  font-family: Kontur-iconic, sans-serif;
+  font-size: 14px;
+  color: #404040;
 }
 
-.btn {
-    border: 1px solid #D9D9D9;
-    border-bottom-color: #B2B2B2;
-    border-radius: 3px;
-    background: linear-gradient(to top, #ECECEC, #FEFEFE);
-    line-height: 9px;
-    display: inline-block;
-    margin: 0;
-    padding: 13px 15px;
-}
-
-.btn:focus {
-    box-shadow: 0 0 0 3px #5199DB;
-    border: 1px solid white;
-}
-
-.btn:hover {
-    background: linear-gradient(to top, #DFDFDF, #F2F2F2);
-}
-
-.btn:active {
-    border: 1px solid #CCCCCC;
-    border-top-color: #A6A6A6;
-    box-shadow: inset 0 2px 2px 0 #C1C1C1;
-    background: #D9D9D9;
-}
-
-.btn.disabled,
-.btn[disabled] {
-    border: 1px solid #D9D9D9 !important;
-    background: #F2F2F2;
-    color: #808080;
-    outline: none;
-    box-shadow: none;
-}
