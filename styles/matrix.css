@@ -1,6 +1,7 @@
 .matrix {
   display: inline-block;
   position: relative;
+  vertical-align: top;
 }
 
 .matrix-left,
