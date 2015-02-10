@@ -15,7 +15,7 @@
         }
 
         event.initEvent(name, true, true);
-        return !el.dispatchEvent(event);
+        el.dispatchEvent(event);
     }
 
     function setState(obj, value) {

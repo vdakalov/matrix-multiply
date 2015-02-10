@@ -36,7 +36,7 @@
     }
 
     function changeMatrix(matrix) {
-        if (matrix.el.checked) {
+        if (matrix.toggle.checked) {
             currentMatrix = matrix;
         }
     }
@@ -124,9 +124,7 @@
         repeat(matrix.dimension * 2, function(){ matrix.values.push(0); });
 
         bind(matrix.toggle, "change", changeMatrix.bind(this, matrix));
-        if (matrix.toggle.checked) {
-            changeMatrix(matrix);
-        }
+        changeMatrix(matrix);
     });
 
     bind(multiplyAction, "click", calculate);
@@ -139,7 +137,6 @@
             each(matrixList, function(matrix){
                 if (matrix.id == data[0]) {
                     matrix.values[parseInt(data[1])] = parseInt(value);
-                    console.log(data, value, matrix.values);
                 }
             });
         }
@@ -149,6 +146,7 @@
         each(matrixList, function(matrix){
             matrix.values = collect(matrix.values, function(){ return 0; });
         });
+        calculate();
         render();
     });
 
@@ -165,6 +163,42 @@
 
         render();
 
+    });
+
+    bind(addColumnAction, "click", function(){
+        if (currentMatrix) {
+            repeat(currentMatrix.values.length / currentMatrix.dimension, function(rowIndex){
+                currentMatrix.values.splice((rowIndex * 2 + 1) * currentMatrix.dimension, 0, 0);
+            });
+            currentMatrix.dimension++;
+            render();
+        }
+    });
+
+    bind(addRowAction, "click", function(){
+        if (currentMatrix) {
+            repeat(currentMatrix.dimension, function(){
+                currentMatrix.values.push(0);
+            });
+            render();
+        }
+    });
+
+    bind(delColumnAction, "click", function(){
+        if (currentMatrix && currentMatrix.dimension > 2) {
+            repeat(currentMatrix.values.length / currentMatrix.dimension, function(rowIndex){
+                currentMatrix.values.splice((rowIndex + 1) * currentMatrix.dimension - (rowIndex+1), 1);
+            });
+            currentMatrix.dimension--;
+            render();
+        }
+    });
+
+    bind(delRowAction, "click", function(){
+        if (currentMatrix && (currentMatrix.values.length / currentMatrix.dimension) > 2) {
+            currentMatrix.values.splice(currentMatrix.values.length - currentMatrix.dimension, currentMatrix.dimension);
+            render();
+        }
     });
 
     calculate();
