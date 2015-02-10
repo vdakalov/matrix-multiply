@@ -10,7 +10,7 @@ window.each = function(obj, context, handler) {
     if (typeof obj === 'object' && obj !== null && typeof handler === 'function') {
         for (name in obj) {
             item = obj[name];
-            if (obj.hasOwnProperty(name) && (name !== 'length' || !(obj instanceof Array))) {
+            if (obj.hasOwnProperty(name) && (name !== 'length' || !(obj instanceof Array || obj instanceof HTMLCollection))) {
                 if (context) {
                     handler.call(context, item, name, index++);
                 } else {
@@ -104,4 +104,12 @@ window.repeat = function(number, context, handler) {
         }
     });
     return list;
+};
+
+window.bind = function(el, eventName, handler) {
+    if (window.addEventListener) {
+        el.addEventListener(eventName, handler, false);
+    } else {
+        el.attachEvent("on" + eventName, handler);
+    }
 };

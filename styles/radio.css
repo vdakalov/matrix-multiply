@@ -5,6 +5,10 @@
   cursor: default;
 }
 
+.radio input {
+  display: none;
+}
+
 .radio span {
   display: inline-block;
   width: 16px;
