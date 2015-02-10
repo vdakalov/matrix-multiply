@@ -13,3 +13,26 @@ html, body {
   color: #404040;
 }
 
+.toolbar {
+  height: 100%;
+  float: left;
+}
+
+.toolbar,
+.toolbar-overlay {
+  background: #CCCCCC;
+  padding-bottom: 1px;
+}
+
+.toolbar-content {
+  margin: 10px;
+}
+
+.workspace {
+  display: inline-block;
+}
+
+.workspace-overlay {
+  display: block;
+  margin: 10px;
+}

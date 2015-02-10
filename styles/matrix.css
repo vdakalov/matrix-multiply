@@ -1,0 +1,67 @@
+.matrix {
+  display: inline-block;
+  position: relative;
+}
+
+.matrix-left,
+.matrix-right {
+  border: 1px solid #404040;
+  width: 8px;
+  height: 100%;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.matrix-left {
+  float: left;
+  border-right: 0;
+  left: 0;
+}
+
+.matrix-right {
+  float: right;
+  border-left: 0;
+  right: 0;
+}
+
+.matrix-center {
+  margin: 8px
+}
+
+.matrix-center ul + ul {
+  margin-top: 10px;
+}
+
+.matrix-center li {
+  display: block;
+  float: left;
+}
+
+.matrix-center ul:after {
+  content: "";
+  height: 0;
+  clear: both;
+  display: block;
+}
+
+.matrix-center li + li {
+  margin-left: 10px;
+}
+
+.matrix-center ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.matrix-center li {
+  display: inline-block;
+}
+
+.matrix input {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+}
+
+
