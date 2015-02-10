@@ -2,8 +2,7 @@
     'use strict';
 
     var stateClassName = 'checked',
-        stateRegexp = new RegExp("(^"+stateClassName+"\\s+|\\s+"+stateClassName+"$|\\s+"+stateClassName+")", "g"),
-        buttons = document.getElementsByClassName("radio"),
+        buttons = query(".radio", true),
         groups = {};
 
     function createEvent(el, name) {
@@ -28,11 +27,10 @@
                 obj.radio.checked = typeof value == "boolean" ? value : false;
             }
 
-            // remove "checked" class name
-            obj.el.className = obj.el.className.replace(stateRegexp, "");
+            removeClass(obj.el, stateClassName);
 
             if (obj.radio.checked) {
-                obj.el.className += " " + stateClassName;
+                addClass(obj.el, stateClassName);
             }
 
             // create event
@@ -75,6 +73,8 @@
         };
 
         groups[name].push(obj);
+
+        setState(obj, radio.checked);
 
         // update state
         bind(button, "click", state.bind(this, obj, null));

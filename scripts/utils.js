@@ -113,3 +113,36 @@ window.bind = function(el, eventName, handler) {
         el.attachEvent("on" + eventName, handler);
     }
 };
+
+window.query = function(selector, all){
+    var fnc = all ? 'querySelectorAll': 'querySelector';
+    if (fnc in document) {
+        return document[fnc](selector);
+    }
+
+    var prefix = selector.substr(0, 1),
+        name = selector.substr(1),
+        result;
+
+    switch (prefix) {
+        case ".": result = document.getElementsByClassName(name); break;
+        case "#": result = document.getElementById(name); break;
+        default : result = document.getElementsByTagName(name); break;
+    }
+
+    if (result && !all) {
+        result = result.item(0);
+    }
+
+    return  result;
+};
+
+window.addClass = function(el, name){
+    removeClass(el, name);
+    el.className += " " + name;
+};
+
+window.removeClass = function(el, name){
+    var re = new RegExp("(^"+name+"\\s+|\\s+"+name+"$|\\s+"+name+")", "g");
+    el.className = el.className.replace(re, "");
+};

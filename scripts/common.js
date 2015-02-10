@@ -1,24 +1,46 @@
 (function(){
     'use strict';
 
-    var workspace = document.querySelector(".workspace"),
-        multiplyAction = document.querySelector("#action-multiply"),
-        addRowAction = document.querySelector("#action-add-row"),
-        delRowAction = document.querySelector("#action-del-row"),
-        addColumnAction = document.querySelector("#action-add-column"),
-        delColumnAction = document.querySelector("#action-del-column"),
-        clearAction = document.querySelector("#action-clear"),
-        exchangeAction = document.querySelector("#action-exchange"),
+    var workspace = query(".workspace"),
+        multiplyAction = query("#action-multiply"),
+        addRowAction = query("#action-add-row"),
+        delRowAction = query("#action-del-row"),
+        addColumnAction = query("#action-add-column"),
+        delColumnAction = query("#action-del-column"),
+        clearAction = query("#action-clear"),
+        exchangeAction = query("#action-exchange"),
+        message = query("#message"),
+        toolbar = query(".toolbar"),
 
         currentMatrix,
-        resultMatrix = document.querySelector("#result-matrix"),
+        resultMatrix = query("#result-matrix"),
         matrixList = [
             {id: "A", toggleSelector: "#toggle-matrixA", containerSelector: "#matrixA"},
             {id: "B", toggleSelector: "#toggle-matrixB", containerSelector: "#matrixB"}
         ];
 
-    function onError(text) {
-        console.error(text);
+    function hideError() {
+        removeClass(toolbar, "error");
+        message.innerHTML = "";
+    }
+
+    function showError(text) {
+        removeClass(toolbar, "error");
+        removeClass(toolbar, "mod");
+        addClass(toolbar, "error");
+        message.innerHTML = text;
+    }
+
+    function hideMod() {
+        removeClass(toolbar, "mod");
+        message.innerHTML = "";
+    }
+
+    function showMod(text) {
+        removeClass(toolbar, "error");
+        removeClass(toolbar, "mod");
+        addClass(toolbar, "mod");
+        message.innerHTML = text;
     }
 
     function multiply(a, b) {
@@ -45,14 +67,20 @@
         return document.createElement("ul");
     }
 
-    function buildCell(id, value, parent) {
+    function buildCell(matrix, id, value, parent) {
         var li = document.createElement("li"),
             input = document.createElement("input");
 
-        input.id = id;
+        input.id = matrix.id + "." + id;
         input.type = "text";
         input.value = value;
         li.appendChild(input);
+
+        bind(input, "blur", hideMod);
+        bind(input, "focus", function(){
+            showMod("Матрица " + matrix.id + ", элемент " + matrix.id.toLowerCase() + Math.floor((id / matrix.dimension)+1) +
+                ((id % matrix.dimension) + 1));
+        });
 
         if (parent instanceof HTMLUListElement) {
             parent.appendChild(li);
@@ -82,8 +110,10 @@
                 dimension: b.dimension
             });
 
+            hideError();
+
         } else {
-            onError("Кол-во столбцов первой матрицы не совпадает с кол-во строк второй матрицы");
+            showError("Кол-во столбцов первой матрицы не совпадает с кол-вом строк второй матрицы");
         }
     }
 
@@ -103,7 +133,7 @@
                 center.appendChild(row);
             }
 
-            buildCell(matrix.id+"."+key, value, row);
+            buildCell(matrix, key, value, row);
         });
 
     }
@@ -112,9 +142,9 @@
     each(matrixList, function(matrix){
 
         // get matrix selector
-        matrix.toggle = document.querySelector(matrix.toggleSelector);
+        matrix.toggle = query(matrix.toggleSelector);
         // get matrix container
-        matrix.el = document.querySelector(matrix.containerSelector);
+        matrix.el = query(matrix.containerSelector);
 
         // matrix properties
         matrix.dimension = 2;

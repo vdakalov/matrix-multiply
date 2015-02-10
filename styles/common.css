@@ -29,8 +29,22 @@ html, body {
 
 .toolbar,
 .toolbar-overlay {
-  background: #CCCCCC;
+  background: #BCBCBC;
   padding-bottom: 1px;
+}
+
+.toolbar.mod,
+.toolbar.mod .toolbar-overlay {
+  background: #5199DB;
+}
+
+.toolbar.error,
+.toolbar.error .toolbar-overlay {
+  background: #F6C1C0;
+}
+
+.toolbar.error #message {
+  color: red;
 }
 
 .toolbar-content {
