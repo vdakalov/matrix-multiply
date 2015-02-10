@@ -18,36 +18,46 @@
             <div class="toolbar-content">
 
                 <button tabindex="0" id="action-multiply" class="btn btn-green">Умножить</button>
+
                 <br/><br/><br/>
 
-                <button tabindex="0" class="btn" id="action-clear">Очистить матрицы</button>
-                <br/>
+                <div class="controls">
+                    <button tabindex="0" class="btn" id="action-clear">Очистить матрицы</button>
+                </div>
+
+                <div class="controls">
                 <button tabindex="0" class="btn" id="action-exchange">Поменять матрицы местами</button>
-
-                <br/><br/>
-                <br/><br/>
-
-                <div class="radio" tabindex="0">
-                    <input type="radio" id="toggle-matrixA" checked="checked" name="matrix" />
-                    <span></span>
-                    Матрица A
                 </div>
 
-                <div class="radio" tabindex="0">
-                    <input type="radio" id="toggle-matrixB" name="matrix" />
-                    <span></span>
-                    Матрица B
-                </div>
+                <br/><br/>
                 <br/><br/>
 
-                <button class="btn" tabindex="0" id="action-add-row">Добавить</button>
-                <button class="btn" tabindex="0" id="action-del-row">Удалить</button>
-                Строку
-                <br/>
+                <div class="controls">
+                    <div class="radio" tabindex="0">
+                        <input type="radio" id="toggle-matrixA" checked="checked" name="matrix" />
+                        <span></span>
+                        Матрица A
+                    </div>
 
-                <button class="btn" tabindex="0" id="action-add-column">Добавить</button>
-                <button class="btn" tabindex="0" id="action-del-column">Удалить</button>
-                Столбец
+                    <div class="radio" tabindex="0">
+                        <input type="radio" id="toggle-matrixB" name="matrix" />
+                        <span></span>
+                        Матрица B
+                    </div>
+                </div>
+
+
+                <div class="controls">
+                    <button class="btn" tabindex="0" id="action-add-row">Добавить</button>
+                    <button class="btn" tabindex="0" id="action-del-row">Удалить</button>
+                    Строку
+                </div>
+
+                <div class="controls">
+                    <button class="btn" tabindex="0" id="action-add-column">Добавить</button>
+                    <button class="btn" tabindex="0" id="action-del-column">Удалить</button>
+                    Столбец
+                </div>
 
             </div>
 
@@ -58,24 +68,26 @@
 
         <div class="workspace-overlay">
 
-            <div class="matrix" id="result-matrix">
-                <div class="matrix-left"></div>
-                <div class="matrix-right"></div>
-                <div class="matrix-center"></div>
+            <div class="clearfix">
+                <div class="matrix" id="result-matrix">
+                    <div class="matrix-left"></div>
+                    <div class="matrix-right"></div>
+                    <div class="matrix-center"></div>
+                </div>
+
+                <div class="matrix" id="matrixA">
+                    <div class="matrix-left"></div>
+                    <div class="matrix-right"></div>
+                    <div class="matrix-center"></div>
+                </div>
             </div>
 
-            <div class="matrix" id="matrixA">
-                <div class="matrix-left"></div>
-                <div class="matrix-right"></div>
-                <div class="matrix-center"></div>
-            </div>
-
-            <br/>
-
-            <div class="matrix" id="matrixB">
-                <div class="matrix-left"></div>
-                <div class="matrix-right"></div>
-                <div class="matrix-center"></div>
+            <div class="clearfix">
+                <div class="matrix" id="matrixB">
+                    <div class="matrix-left"></div>
+                    <div class="matrix-right"></div>
+                    <div class="matrix-center"></div>
+                </div>
             </div>
 
         </div>

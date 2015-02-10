@@ -13,9 +13,18 @@ html, body {
   color: #404040;
 }
 
+.clearfix:after {
+  content: "";
+  height: 0;
+  clear: both;
+  display: block;
+}
+
 .toolbar {
+  width: 350px;
   height: 100%;
   float: left;
+  position: fixed;
 }
 
 .toolbar,
@@ -30,9 +39,14 @@ html, body {
 
 .workspace {
   display: inline-block;
+  margin-left: 350px;
 }
 
 .workspace-overlay {
   display: block;
   margin: 10px;
+}
+
+.controls {
+  margin-top: 10px;
 }

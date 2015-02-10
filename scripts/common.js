@@ -166,20 +166,23 @@
     });
 
     bind(addColumnAction, "click", function(){
-        if (currentMatrix) {
+        if (currentMatrix && 10 > currentMatrix.dimension) {
             repeat(currentMatrix.values.length / currentMatrix.dimension, function(rowIndex){
                 currentMatrix.values.splice((rowIndex * 2 + 1) * currentMatrix.dimension, 0, 0);
             });
             currentMatrix.dimension++;
+
+            calculate();
             render();
         }
     });
 
     bind(addRowAction, "click", function(){
-        if (currentMatrix) {
+        if (currentMatrix && 10 > (currentMatrix.values.length / currentMatrix.dimension)) {
             repeat(currentMatrix.dimension, function(){
                 currentMatrix.values.push(0);
             });
+            calculate();
             render();
         }
     });
@@ -190,6 +193,7 @@
                 currentMatrix.values.splice((rowIndex + 1) * currentMatrix.dimension - (rowIndex+1), 1);
             });
             currentMatrix.dimension--;
+            calculate();
             render();
         }
     });
@@ -197,6 +201,7 @@
     bind(delRowAction, "click", function(){
         if (currentMatrix && (currentMatrix.values.length / currentMatrix.dimension) > 2) {
             currentMatrix.values.splice(currentMatrix.values.length - currentMatrix.dimension, currentMatrix.dimension);
+            calculate();
             render();
         }
     });
