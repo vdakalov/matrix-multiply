@@ -198,14 +198,15 @@
     bind(exchangeAction, "click", function(){
 
         var tempValues = matrixList[0].values.slice(0),
-            tempDimension = matrixList[0].dimension;
+            tempDimension = matrixList[0].values.length / matrixList[0].dimension;
 
         matrixList[0].values = matrixList[1].values.slice(0);
-        matrixList[0].dimension = matrixList[1].dimension;
+        matrixList[0].dimension = matrixList[1].values.length / matrixList[1].dimension;
 
         matrixList[1].values = tempValues;
         matrixList[1].dimension = tempDimension;
 
+        calculate();
         render();
         unFocus(exchangeAction);
 
