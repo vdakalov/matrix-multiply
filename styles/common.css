@@ -1,6 +1,6 @@
 @font-face {
   font-family: Kontur-iconic;
-  src: url("fonts/contur-iconic.eot?"), url("fonts/contur-iconic.ttf");
+  src: url("../fonts/contur-iconic.eot?"), url("../fonts/contur-iconic.ttf");
 }
 
 html, body {
