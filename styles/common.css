@@ -1,14 +1,8 @@
-@font-face {
-  font-family: Kontur-iconic;
-  src: url("/fonts/contur-iconic.ttf");
-}
-
 html, body {
   width: 100%;
   height: 100%;
   margin: 0;
 
-  font-family: Kontur-iconic, sans-serif;
   font-size: 14px;
   color: #404040;
 }
