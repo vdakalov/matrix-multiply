@@ -9,8 +9,9 @@ window.each = function(obj, context, handler) {
     }
     if (typeof obj === 'object' && obj !== null && typeof handler === 'function') {
         for (name in obj) {
-            item = obj[name];
-            if (obj.hasOwnProperty(name) && (name !== 'length' || !(obj instanceof Array || obj instanceof HTMLCollection))) {
+            if (obj.hasOwnProperty(name) &&
+              (name !== 'length' || !(obj instanceof Array || obj instanceof NodeList))) {
+                item = obj[name];
                 if (context) {
                     handler.call(context, item, name, index++);
                 } else {
@@ -144,5 +145,5 @@ window.addClass = function(el, name){
 
 window.removeClass = function(el, name){
     var re = new RegExp("(^"+name+"\\s+|\\s+"+name+"$|\\s+"+name+")", "g");
-    el.className = el.className.replace(re, "");
+    el.className = (el.className || "").replace(re, "");
 };

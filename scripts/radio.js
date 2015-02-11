@@ -58,9 +58,9 @@
     // load radio buttons
     each(buttons, function(button){
 
-        var radio = button.getElementsByTagName("input").item(0),
+        var radio = query("input"),
             name = radio ? radio.name : null,
-            obj = {};
+            obj;
 
         if (!(name in groups)) {
             groups[name] = [];
