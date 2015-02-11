@@ -157,7 +157,10 @@
         changeMatrix(matrix);
     });
 
-    bind(multiplyAction, "click", calculate);
+    bind(multiplyAction, "click", function(){
+        unFocus(multiplyAction);
+        calculate();
+    });
 
     // update model on enter values
     bind(workspace, "change", function(event){
@@ -173,6 +176,7 @@
     });
 
     bind(clearAction, "click", function(){
+        unFocus(clearAction);
         each(matrixList, function(matrix){
             matrix.values = collect(matrix.values, function(){ return 0; });
         });
@@ -192,10 +196,12 @@
         matrixList[1].dimension = tempDimension;
 
         render();
+        unFocus(exchangeAction);
 
     });
 
     bind(addColumnAction, "click", function(){
+        unFocus(addColumnAction);
         if (currentMatrix && 10 > currentMatrix.dimension) {
             repeat(currentMatrix.values.length / currentMatrix.dimension, function(rowIndex){
                 currentMatrix.values.splice((rowIndex * 2 + 1) * currentMatrix.dimension, 0, 0);
@@ -208,6 +214,7 @@
     });
 
     bind(addRowAction, "click", function(){
+        unFocus(addRowAction);
         if (currentMatrix && 10 > (currentMatrix.values.length / currentMatrix.dimension)) {
             repeat(currentMatrix.dimension, function(){
                 currentMatrix.values.push(0);
@@ -218,6 +225,7 @@
     });
 
     bind(delColumnAction, "click", function(){
+        unFocus(delColumnAction);
         if (currentMatrix && currentMatrix.dimension > 2) {
             repeat(currentMatrix.values.length / currentMatrix.dimension, function(rowIndex){
                 currentMatrix.values.splice((rowIndex + 1) * currentMatrix.dimension - (rowIndex+1), 1);
@@ -229,6 +237,7 @@
     });
 
     bind(delRowAction, "click", function(){
+        unFocus(delRowAction);
         if (currentMatrix && (currentMatrix.values.length / currentMatrix.dimension) > 2) {
             currentMatrix.values.splice(currentMatrix.values.length - currentMatrix.dimension, currentMatrix.dimension);
             calculate();

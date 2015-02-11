@@ -147,3 +147,9 @@ window.removeClass = function(el, name){
     var re = new RegExp("(^"+name+"\\s+|\\s+"+name+"$|\\s+"+name+")", "g");
     el.className = (el.className || "").replace(re, "");
 };
+
+window.unFocus = function(el){
+    if ('blur' in el) {
+        el.blur();
+    }
+};

@@ -27,10 +27,6 @@
   border-bottom-color: #426C36;
 }
 
-.btn.btn-green:focus {
-  border: 1px solid #FFFFFF;
-}
-
 .btn.btn-green:active {
   background: #35840E;
   box-shadow: inset 0 2px 4px 0 rgba(0,0,0,.2);
