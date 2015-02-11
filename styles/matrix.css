@@ -2,12 +2,10 @@
   display: inline-block;
   position: relative;
   vertical-align: top;
+  margin-top: 5px;
   float: left;
 }
 
-.matrix:first-child {
-  margin-top: 5px;
-}
 .matrix + .matrix {
   margin-top: 5px;
   margin-left: 5px;
@@ -73,4 +71,29 @@
   height: 34px;
   margin: 0;
   padding: 2px;
+}
+
+.matrix-name {
+  font-size: 18px;
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.matrix-name div {
+  top: 50%;
+  position: absolute;
+  margin-top: -10px;
+}
+
+#matrixA .matrix-name {
+  height: 100%;
+  top: 0;
+  right: -20px;
+}
+
+#matrixB  .matrix-name {
+  width: 100%;
+  left: 0;
+  bottom: -36px;
 }
