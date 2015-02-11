@@ -77,10 +77,15 @@
         setState(obj, radio.checked);
 
         // update state
-        bind(button, "click", state.bind(this, obj, null));
+        bind(button, "click", function(){
+            state(obj, null);
+            unFocus(button);
+        });
+
         bind(button, "keypress", function(event){
             if (event.keyCode === 32) {
                 state(obj, true);
+                unFocus(button);
             }
         });
 
