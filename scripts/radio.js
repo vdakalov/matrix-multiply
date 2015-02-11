@@ -58,7 +58,7 @@
     // load radio buttons
     each(buttons, function(button){
 
-        var radio = query("input"),
+        var radio = button.getElementsByTagName("input").item(0),
             name = radio ? radio.name : null,
             obj;
 
