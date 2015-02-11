@@ -12,11 +12,12 @@
         message = query("#message"),
         toolbar = query(".toolbar"),
 
+        defaultValue = null,
         currentMatrix,
         resultMatrix = query("#result-matrix"),
         matrixList = [
-            {id: "A", toggleSelector: "#toggle-matrixA", containerSelector: "#matrixA"},
-            {id: "B", toggleSelector: "#toggle-matrixB", containerSelector: "#matrixB"}
+            {id: "A", toggleSelector: "#toggle-matrixA", containerSelector: "#matrixA", canMod: true},
+            {id: "B", toggleSelector: "#toggle-matrixB", containerSelector: "#matrixB", canMod: true}
         ];
 
     function hideError() {
@@ -47,10 +48,17 @@
         var c = [];
         repeat(a.values.length / a.dimension, function(aRowIndex){
             repeat(b.dimension, function(bColumnIndex){
-                c[(aRowIndex * b.dimension) + bColumnIndex] = 0;
+                c[(aRowIndex * b.dimension) + bColumnIndex] = defaultValue;
                 repeat(a.dimension, function(aColumnIndex){
-                    c[(aRowIndex * b.dimension) + bColumnIndex] += a.values[(aRowIndex * a.dimension) + aColumnIndex] *
-                    b.values[(aColumnIndex * b.dimension) + bColumnIndex];
+                    if (c[(aRowIndex * b.dimension) + bColumnIndex] === defaultValue &&
+                      a.values[(aRowIndex * a.dimension) + aColumnIndex] !== defaultValue &&
+                      b.values[(aColumnIndex * b.dimension) + bColumnIndex] !== defaultValue) {
+                        c[(aRowIndex * b.dimension) + bColumnIndex] = 0;
+                    }
+                    if (c[(aRowIndex * b.dimension) + bColumnIndex] !== defaultValue) {
+                        c[(aRowIndex * b.dimension) + bColumnIndex] += a.values[(aRowIndex * a.dimension) + aColumnIndex] *
+                            b.values[(aColumnIndex * b.dimension) + bColumnIndex];
+                    }
                 });
             });
         });
@@ -73,13 +81,15 @@
 
         input.id = matrix.id + "." + id;
         input.type = "text";
-        input.value = value;
+        input.value = value === defaultValue ? "" : value;
+        input.disabled = !matrix.canMod;
+        input.placeholder = matrix.id.toLowerCase() + Math.floor((id / matrix.dimension)+1) +
+                ((id % matrix.dimension) + 1);
         li.appendChild(input);
 
         bind(input, "blur", hideMod);
         bind(input, "focus", function(){
-            showMod("Матрица " + matrix.id + ", элемент " + matrix.id.toLowerCase() + Math.floor((id / matrix.dimension)+1) +
-                ((id % matrix.dimension) + 1));
+            showMod("");
         });
 
         if (parent instanceof HTMLUListElement) {
@@ -107,7 +117,8 @@
                 id: "C",
                 el: resultMatrix,
                 values: c,
-                dimension: b.dimension
+                dimension: b.dimension,
+                canMod: false
             });
 
             hideError();
@@ -151,7 +162,7 @@
         matrix.values = [];
 
         // fill matrix 2x2
-        repeat(matrix.dimension * 2, function(){ matrix.values.push(0); });
+        repeat(matrix.dimension * 2, function(){ matrix.values.push(defaultValue); });
 
         bind(matrix.toggle, "change", changeMatrix.bind(this, matrix));
         changeMatrix(matrix);
@@ -178,7 +189,7 @@
     bind(clearAction, "click", function(){
         unFocus(clearAction);
         each(matrixList, function(matrix){
-            matrix.values = collect(matrix.values, function(){ return 0; });
+            matrix.values = collect(matrix.values, function(){ return defaultValue; });
         });
         calculate();
         render();
@@ -204,7 +215,7 @@
         unFocus(addColumnAction);
         if (currentMatrix && 10 > currentMatrix.dimension) {
             repeat(currentMatrix.values.length / currentMatrix.dimension, function(rowIndex){
-                currentMatrix.values.splice((rowIndex * 2 + 1) * currentMatrix.dimension, 0, 0);
+                currentMatrix.values.splice((rowIndex * 2 + 1) * currentMatrix.dimension, 0, defaultValue);
             });
             currentMatrix.dimension++;
 
@@ -217,7 +228,7 @@
         unFocus(addRowAction);
         if (currentMatrix && 10 > (currentMatrix.values.length / currentMatrix.dimension)) {
             repeat(currentMatrix.dimension, function(){
-                currentMatrix.values.push(0);
+                currentMatrix.values.push(defaultValue);
             });
             calculate();
             render();
