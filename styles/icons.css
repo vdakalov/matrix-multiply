@@ -4,20 +4,18 @@
 }
 
 [class*="icon-"]:before {
-    width: 11px;
-    height: 11px;
-    display: inline-block;
-    margin: 0;
-    padding: 0;
-    font-family: Kontur-iconic, serif;
-    font-style: normal;
-    font-size: 14px;
-    color: black;
+  width: 11px;
+  height: 11px;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  font-family: Kontur-iconic, serif;
+  font-style: normal;
+  font-size: 14px;
+  color: black;
 }
 
 .icon-exchange:before { content: "\e01f"; }
 .icon-clear:before { content: "\e012"; }
 .icon-plus:before { content: "\e00d"; }
 .icon-minus:before { content: "\e01e"; }
-
-
