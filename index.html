@@ -20,44 +20,36 @@
 
                 <button tabindex="0" id="action-multiply" class="btn-green-arrow"></button>
 
-                <br/><br/><br/>
-
-                <div class="controls">
+                <div class="controls all-matrix">
                     <button tabindex="0" class="btn icon-clear" id="action-clear">Очистить матрицы</button>
+                    <button tabindex="0" class="btn icon-exchange" id="action-exchange">Поменять матрицы местами</button>
                 </div>
 
-                <div class="controls">
-                <button tabindex="0" class="btn icon-exchange" id="action-exchange">Поменять матрицы местами</button>
-                </div>
-
-                <br/><br/>
-                <br/><br/>
-
-                <div class="controls">
+                <div class="controls matrix-toggle">
                     <div class="radio" tabindex="0">
                         <input type="radio" id="toggle-matrixA" checked="checked" name="matrix" />
-                        <span></span>
-                        Матрица A
+                        <span class="radio-ctrl"></span>
+                        <span class="label">Матрица A</span>
                     </div>
 
                     <div class="radio" tabindex="0">
                         <input type="radio" id="toggle-matrixB" name="matrix" />
-                        <span></span>
-                        Матрица B
+                        <span class="radio-ctrl"></span>
+                        <span class="label">Матрица B</span>
                     </div>
                 </div>
 
 
-                <div class="controls">
+                <div class="controls row">
                     <button class="btn icon-plus" tabindex="0" id="action-add-row">Добавить</button>
                     <button class="btn icon-minus" tabindex="0" id="action-del-row">Удалить</button>
-                    Строку
+                    <span class="label">строку</span>
                 </div>
 
-                <div class="controls">
+                <div class="controls cell">
                     <button class="btn icon-plus" tabindex="0" id="action-add-column">Добавить</button>
                     <button class="btn icon-minus" tabindex="0" id="action-del-column">Удалить</button>
-                    Столбец
+                    <span class="label">столбец</span>
                 </div>
 
                 <p id="message"></p>

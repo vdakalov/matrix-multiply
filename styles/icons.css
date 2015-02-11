@@ -1,8 +1,3 @@
-@font-face {
-  font-family: Kontur-iconic;
-  src: url("/fonts/contur-iconic.eot?"), url("/fonts/contur-iconic.ttf");
-}
-
 [class*="icon-"]:before {
   width: 11px;
   height: 11px;
